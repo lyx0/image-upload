@@ -8,10 +8,27 @@
         <title>Upload</title>
     </head>
     <body>
-        <h1>Upload an image</h1>
-        <form action="/upload" method="POST" enctype="multipart/form-data">
-            <input type="file" name="image" id="" multiple />
-            <button>Submit</button>
-        </form>
+        <div class="container">
+            <h1 class="h1">Upload an image</h1>
+            <div class="row align-items-start">
+                <div class="col">
+                    <form action="/upload" method="POST" enctype="multipart/form-data">
+                        <div class="input-group">
+                            <input
+                                type="file"
+                                name="image"
+                                id=""
+                                class="form-control"
+                                id="inputGroupFile04"
+                                aria-describedby="inputGroupFileAddon04"
+                                aria-label="Upload"
+                                multiple
+                            />
+                            <button class="btn btn-primary">Upload</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
