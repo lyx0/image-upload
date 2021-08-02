@@ -48,8 +48,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // app.use("/", uploadRoute);
 
-app.get("/", (req, res) => {
-    res.render("index");
+app.get("/upload", (req, res) => {
+    res.render("upload/index");
 });
 
 app.post("/upload", upload.single("image"), (req, res) => {
@@ -58,6 +58,9 @@ app.post("/upload", upload.single("image"), (req, res) => {
     res.send("it worked");
 });
 
+app.get("/", (req, res) => {
+    res.render("index");
+});
 app.listen(8080, () => {
     console.log("Listening on port 8080");
 });
