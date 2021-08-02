@@ -5,14 +5,9 @@ const ejsMate = require("ejs-mate");
 
 // Helpers
 const methodOverride = require("method-override");
-const { Router } = require("express");
 
-// Cloudinary
-const { storage } = require("./cloudinary");
-
-// Multer
-const multer = require("multer");
-const upload = multer({ storage });
+// Routes
+const uploadRoutes = require("./routes/upload");
 
 // MongoDB
 mongoose.connect("mongodb://localhost:27017/image-test", {
@@ -49,15 +44,7 @@ app.use(methodOverride("_method"));
 
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get("/upload", (req, res) => {
-    res.render("upload/index");
-});
-
-app.post("/upload", upload.array("image"), (req, res) => {
-    console.log(req.body);
-    console.log(req.file);
-    res.send("it worked");
-});
+app.use("/upload", uploadRoutes);
 
 app.get("/", (req, res) => {
     res.render("index");
