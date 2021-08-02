@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 
 // Helpers
+// For requests
 const methodOverride = require("method-override");
 
 // Routes
@@ -27,28 +28,27 @@ const app = express();
 
 // For EJS templates
 app.engine("ejs", ejsMate);
-
 app.set("view engine", "ejs");
 
 // So that the basepath is always the file with
 // app.js in it, regardless of where we call it
 app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Enables us to read the request body from the
-// POST request
+// html POST request.
 app.use(express.urlencoded({ extended: true }));
 
 // Enables us to use more than GET and POST in
 // a html request.
 app.use(methodOverride("_method"));
 
-app.use(express.static(path.join(__dirname, "public")));
-
 app.use("/upload", uploadRoutes);
 
 app.get("/", (req, res) => {
     res.render("index");
 });
+
 app.listen(8080, () => {
     console.log("Listening on port 8080");
 });
